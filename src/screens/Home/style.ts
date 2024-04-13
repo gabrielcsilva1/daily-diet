@@ -1,3 +1,4 @@
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import { css } from 'styled-components/native';
 
@@ -7,9 +8,33 @@ type Props = {
     type: DietStatusStyleTypeProps;
 }
 
-export const Container = styled.View`
+export const Container = styled(SafeAreaView)`
     flex: 1;
     padding: 0 24px;
+
+    background-color: ${({theme}) => theme.COLORS.GRAY_600};
+`
+
+export const HeaderContent = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+`
+
+export const Logo = styled.Image`
+    width: 82px;
+    height: 37px;
+`
+
+export const Avatar = styled.Image`
+    width: 40px;
+    height: 40px;
+
+    border-width: 1px;
+    border-color: ${({theme}) => theme.COLORS.GRAY_200};
+    
+    border-radius: 999px;
 `
 
 export const DietStatus = styled.View<Props>`
@@ -25,22 +50,6 @@ export const DietStatus = styled.View<Props>`
     position: relative;
     
     background-color: ${({theme, type}) => type === 'PRIMARY' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
-`
-
-export const DietStatusTitle = styled.Text`
-    ${({theme}) => css`
-        color: ${theme.COLORS.GRAY_100};
-        font-family: ${theme.FONT_FAMILY.BOLD};
-        font-size: ${theme.SIZE.XL_2}px;
-    `}
-`
-
-export const DietStatusLabel = styled.Text`
-    ${({theme}) => css`
-        color: ${theme.COLORS.GRAY_200};
-        font-family: ${theme.FONT_FAMILY.REGULAR};
-        font-size: ${theme.SIZE.SM}px;
-    `}
 `
 
 export const DietStatusButton = styled.TouchableOpacity`

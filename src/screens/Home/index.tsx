@@ -1,25 +1,34 @@
-import { SectionList, Text } from "react-native";
-import { Container, DietStatus, DietStatusButton, DietStatusLabel, DietStatusTitle, Label, Separator, TitleSectionList } from "./style";
+import { SectionList } from "react-native";
+import { useTheme } from "styled-components/native";
+
+import { Avatar, Container, DietStatus, DietStatusButton, HeaderContent, Label, Logo, Separator, TitleSectionList } from "./style";
 
 import { data } from "@/utils/data";
 
-import { Header } from "@/components/Header";
 import { Button } from "@/components/Button";
 import { MealCard } from "@/components/MealCard";
+import { Highlight } from "@/components/Highlight";
 import { ArrowIcon } from "@/components/ArrowIcon";
 
+import logoImg from '@/assets/logo.png';
+import avatarImg from '@/assets/avatar.png';
+
 export default function Home() {
+    const {COLORS} = useTheme()
     return (
         <Container>
-            <Header/>
+            <HeaderContent>
+                <Logo source={logoImg}/>
+
+                <Avatar source={avatarImg}/>
+            </HeaderContent>
 
             <DietStatus type="PRIMARY">
 
-                <DietStatusTitle>90,86%</DietStatusTitle>
-                <DietStatusLabel>das refeições dentro da dieta</DietStatusLabel>
+                <Highlight title="90,86%" label="das refeições dentro da dieta"/>
 
                 <DietStatusButton activeOpacity={0.7}>
-                    <ArrowIcon name="arrow-up-right"/>
+                    <ArrowIcon name="arrow-up-right" color={COLORS.GREEN_DARK}/>
                 </DietStatusButton>
             </DietStatus>
 

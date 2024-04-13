@@ -1,13 +1,18 @@
-import { Container, Logo, Avatar } from'./style';
-import logoImg from '@/assets/logo.png';
-import avatarImg from '@/assets/avatar.png';
+import { ArrowIcon } from '../ArrowIcon';
+import { BackButton, Container, Subtitle } from'./style';
 
-export function Header() {
+type HeaderComponentProps = {
+    subtitle ?: string
+}
+
+export function Header({subtitle = ''}: HeaderComponentProps) {
     return (
        <Container>
-            <Logo source={logoImg}/>
+            <BackButton>
+                <ArrowIcon name="arrow-left"/>
+            </BackButton>
 
-            <Avatar source={avatarImg}/>
+            {subtitle && <Subtitle>{subtitle}</Subtitle>}
         </Container>
     )
 }

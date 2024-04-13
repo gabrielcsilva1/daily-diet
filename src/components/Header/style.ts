@@ -1,23 +1,24 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
     flex-direction: row;
-    justify-content: space-between;
     
     align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 12px;
 `
 
-export const Logo = styled.Image`
-    width: 82px;
-    height: 37px;
+export const Subtitle = styled.Text`
+    ${({theme}) => css`
+        color: ${theme.COLORS.GRAY_100};
+        font-family: ${theme.FONT_FAMILY.BOLD};
+        font-size: ${theme.SIZE.LG}px;
+    `}
 `
 
-export const Avatar = styled.Image`
-    width: 40px;
-    height: 40px;
-
-    border-width: 1px;
-    border-color: ${({theme}) => theme.COLORS.GRAY_200};
-    
-    border-radius: 999px;
+export const BackButton = styled.TouchableOpacity`
+    left: 0;
+    position: absolute;
+    padding: 0px 24px;
 `
