@@ -16,4 +16,4 @@ export const COLORS = {
     GRAY_700:"#FAFAFA",
 
     WHITE: "#FFFFFF",
-}
+} as const;

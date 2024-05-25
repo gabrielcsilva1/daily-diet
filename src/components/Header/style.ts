@@ -18,7 +18,8 @@ export const Subtitle = styled.Text`
 `
 
 export const BackButton = styled.TouchableOpacity`
-    left: 0;
+    justify-self: center;
     position: absolute;
-    padding: 0px 24px;
+    padding: 24px;
+    left: 0;
 `

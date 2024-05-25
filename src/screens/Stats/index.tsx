@@ -1,28 +1,28 @@
-import { Card } from "@/components/Card";
-import { CardsContainer, Container, GeneralStatsContainer, Title } from "./style";
-import { Highlight } from "@/components/Highlight";
+import { CardsContainer, Container, GeneralStatsContainer, Subtitle } from "./style";
 
-import * as MyCard from '@/components/Card/style';
-import { useTheme } from "styled-components/native";
+import { Card } from "@/components/Card";
 import { Header } from "@/components/Header";
+import { Highlight } from "@/components/Highlight";
+import { DietStatusVariantsProps } from "../Home/style";
 
 
 export default function Stats(){
-    const {COLORS} = useTheme();
+    const status: DietStatusVariantsProps = 2 > 1 ? 'SUCCESS' : 'DANGER'
+
     return (
         <Container>
-            <Header/>
+            <Header $variant={status}/>
             <Highlight title="90,86%" label="das refeições dentro da dieta"/>
 
             <GeneralStatsContainer>
-                <Title>Estatísticas gerais</Title>
+                <Subtitle>Estatísticas gerais</Subtitle>
 
                 <CardsContainer>
-                    <Card title="22" label="melhor sequência de pratos"/>
-                    <Card title="22" label="refeições registradas"/>
+                    <Card value="22" description="melhor sequência de pratos"/>
+                    <Card value="22" description="refeições registradas"/>
                     <CardsContainer isHorizontal>
-                        <Card title="22" label="Refeições dentro da dieta" color={COLORS.GREEN_LIGHT}/>
-                        <Card title="22" label="Refeições fora da dieta" color={COLORS.RED_LIGHT}/>
+                        <Card value="22" description="Refeições dentro da dieta" $variant="SUCCESS"/>
+                        <Card value="22" description="Refeições fora da dieta" $variant="DANGER"/>
                     </CardsContainer>
                 </CardsContainer>
             </GeneralStatsContainer>

@@ -1,18 +1,16 @@
-import { useTheme } from "styled-components/native";
-import { Container, Label, Title } from "./style";
+import { CardVariantProps, Container, Label, Title } from "./style";
 
 type CardComponentProps = {
-    title: string;
-    label: string;
-    color?: string
+    value: string;
+    description: string;
+    $variant?: CardVariantProps
 }
 
-export function Card({ title, label, color = ''}: CardComponentProps){
-    const {COLORS} = useTheme();
+export function Card({ value, description, $variant = 'DEFAULT'}: CardComponentProps){
     return (
-        <Container color={color ? color : COLORS.GRAY_600}>
-            <Title>{title}</Title>
-            <Label>{label}</Label>
+        <Container $variant={$variant}>
+            <Title>{value}</Title>
+            <Label>{description}</Label>
         </Container>
     )
 }

@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components/native";
 import { Feather } from '@expo/vector-icons';
 
-export type ButtonStyleTypeProps = 'PRIMARY' | 'SECONDARY';
+export type ButtonVariantsProps = 'PRIMARY' | 'SECONDARY';
 
 type Props = {
-    type: ButtonStyleTypeProps
+    $variant: ButtonVariantsProps
 }
 
 export const Container = styled.TouchableOpacity<Props>`
@@ -12,26 +12,25 @@ export const Container = styled.TouchableOpacity<Props>`
     align-items: center;
     justify-content: center;
     gap: 12px;
-
     border-radius: 6px;
-    height: 50px;
+    padding: 16px;
 
-    ${({theme, type}) => type === 'PRIMARY' ?
+    ${({theme, $variant}) => $variant === 'PRIMARY' ?
         css`background-color: ${theme.COLORS.GRAY_200};` :
         css`border: 1px solid ${theme.COLORS.GRAY_200};` 
 }
 `
 
-export const ButtonIcon = styled(Feather).attrs<Props>(({theme, type}) => ({
+export const Icon = styled(Feather).attrs<Props>(({theme, $variant}) => ({
     size: 18,
-    color: type === 'PRIMARY' ? theme.COLORS.WHITE : theme.COLORS.GRAY_100
+    color: $variant === 'PRIMARY' ? theme.COLORS.WHITE : theme.COLORS.GRAY_100
 }))``
 
 export const Label = styled.Text<Props>`
-    ${({theme, type}) => css`
+    ${({theme, $variant}) => css`
         font-size: ${theme.SIZE.SM}px;
         font-family: ${theme.FONT_FAMILY.BOLD};
 
-        color: ${type === 'PRIMARY' ? theme.COLORS.WHITE : theme.COLORS.GRAY_100};
+        color: ${$variant === 'PRIMARY' ? theme.COLORS.WHITE : theme.COLORS.GRAY_100};
     `}
 `;

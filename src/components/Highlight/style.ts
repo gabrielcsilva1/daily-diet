@@ -2,10 +2,10 @@ import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
     align-items: center;
+    gap: 2px;
 `;
 
 export const HighlightTitle = styled.Text`
-    margin-bottom: 2px;
     ${({theme}) => css`
         color: ${theme.COLORS.GRAY_100};
         font-family: ${theme.FONT_FAMILY.BOLD};

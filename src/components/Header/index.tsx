@@ -1,15 +1,16 @@
-import { ArrowIcon } from '../ArrowIcon';
+import { ArrowIcon, ArrowIconVariantProps } from '../ArrowIcon';
 import { BackButton, Container, Subtitle } from'./style';
 
 type HeaderComponentProps = {
-    subtitle ?: string
+    subtitle ?: string,
+    $variant?: ArrowIconVariantProps
 }
 
-export function Header({subtitle = ''}: HeaderComponentProps) {
+export function Header({subtitle = '', $variant = 'DEFAULT'}: HeaderComponentProps) {
     return (
        <Container>
             <BackButton>
-                <ArrowIcon name="arrow-left"/>
+                <ArrowIcon name="arrow-left" $variant={$variant}/>
             </BackButton>
 
             {subtitle && <Subtitle>{subtitle}</Subtitle>}

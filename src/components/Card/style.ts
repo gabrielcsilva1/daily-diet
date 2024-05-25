@@ -1,17 +1,24 @@
+import clsx from "clsx";
 import styled, { css } from "styled-components/native";
 
+export type CardVariantProps = 'DEFAULT' | 'SUCCESS' | 'DANGER'
+
 type Props = {
-    color: string
+    $variant: CardVariantProps
 }
 
 export const Container = styled.View<Props>`
     align-items: center;
     gap: 8px;
 
-    background-color: ${({color}) => color};
+    background-color: ${({$variant, theme}) => clsx([
+        $variant === 'DEFAULT' && theme.COLORS.GRAY_600,
+        $variant === 'SUCCESS' && theme.COLORS.GREEN_LIGHT,
+        $variant === 'DANGER' && theme.COLORS.RED_LIGHT,
+    ])};
+    
     border-radius: 8px;
     padding: 16px;
-
 
     flex-shrink: 1;
 `

@@ -1,18 +1,9 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled, { css } from "styled-components/native";
-import { DietStatus } from "@/screens/Home/style";
-
-type CardsContainerStyledProps = {
-    isHorizontal?: boolean
-}
 
 export const Container = styled(SafeAreaView)`
     flex: 1;
     background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT};
-`
-
-export const TopContainer = styled(DietStatus)`
-    position: relative;
 `
 
 export const GeneralStatsContainer = styled.View`
@@ -25,7 +16,7 @@ export const GeneralStatsContainer = styled.View`
     padding: 33px 24px;
 `
 
-export const Title = styled.Text`
+export const Subtitle = styled.Text`
     margin-bottom: 23px;
     ${({theme}) => css`
         font-family: ${theme.FONT_FAMILY.BOLD};
@@ -33,9 +24,12 @@ export const Title = styled.Text`
     `}
 `
 
+type CardsContainerStyledProps = {
+    isHorizontal?: boolean
+}
+
 export const CardsContainer = styled.View<CardsContainerStyledProps>`
     gap: 12px;
-    justify-content: center;
     flex-direction: ${({isHorizontal}) => isHorizontal ? 'row' : 'column'};
     width: 100%;
 `

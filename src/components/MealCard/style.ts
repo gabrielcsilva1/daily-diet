@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components/native";
 
-export type MealCardStyleTypeProps = 'SUCCESS' | 'DANGER'
+export type MealCardVariantsProps = 'SUCCESS' | 'DANGER'
 
 type Props = {
-    style: MealCardStyleTypeProps
+    $variant: MealCardVariantsProps
 }
 
 export const Container = styled.TouchableOpacity`
@@ -41,6 +41,6 @@ export const StatusIndicator = styled.View<Props>`
     height: 14px;
     width: 14px;
     
-    background-color: ${({theme, style}) => style === 'SUCCESS' ? theme.COLORS.GREEN_MID : theme.COLORS.RED_MID};
+    background-color: ${({theme, $variant}) => $variant === 'SUCCESS' ? theme.COLORS.GREEN_MID : theme.COLORS.RED_MID};
     border-radius: 999px;
 `
