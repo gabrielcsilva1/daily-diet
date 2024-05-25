@@ -1,15 +1,16 @@
 import { Container, RowContainer } from "./style";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+import { View } from "react-native";
+
 import { Header } from "@/components/Header";
 import { FormInput } from "@/components/FormInput";
 import { Label } from "@/components/FormInput/style";
 import { OptionButton } from "@/components/OptionButton";
 import { Button, ButtonLabel } from "@/components/Button";
 import { MealFormSheet } from "@/components/MealFormSheet";
-import { View } from "react-native";
 
-export default function NewMeal(){
+export default function CreateMeal(){
 
     return (
         <Container>

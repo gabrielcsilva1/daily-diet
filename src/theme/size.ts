@@ -6,4 +6,4 @@ export const SIZE = {
     LG: 18,
     XL: 24,
     XL_2: 32
-}
+} as const

@@ -24,7 +24,7 @@ const ButtonContext = createContext({} as {
 
 export function Button({$variant = "PRIMARY", children, ...rest}: ButtonComponentProps){
     return (
-        <Container $variant={$variant} {...rest}>
+        <Container $variant={$variant} {...rest} activeOpacity={0.7}>
             <ButtonContext.Provider value={{$variant}}>
                 {children}
             </ButtonContext.Provider>

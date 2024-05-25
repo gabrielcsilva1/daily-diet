@@ -1,12 +1,13 @@
 import Home from "@/screens/Home";
 import Stats from "@/screens/Stats";
-import NewMeal from "@/screens/NewMeal";
-import CreateDietFeedback from "@/screens/CreateDietFeedback";
+import CreateMeal from "@/screens/CreateMeal";
+import NewDietFeedback from "@/screens/NewMealFeedback";
+import { MealInfo } from "@/screens/MealInfo";
 
 export function Routes() {
     return (
         
-        <CreateDietFeedback/>
+        <MealInfo/>
         
     )
 }
