@@ -7,6 +7,7 @@ export const Container = styled.View`
     justify-content: center;
     position: relative;
     margin-bottom: 12px;
+    margin-top: 16px;
 `
 
 export const Subtitle = styled.Text`

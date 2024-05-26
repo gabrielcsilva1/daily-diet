@@ -6,7 +6,7 @@ import { Highlight } from "@/components/Highlight";
 import { DietStatusVariantsProps } from "../Home/style";
 
 
-export default function Stats(){
+export function DietStats(){
     const status: DietStatusVariantsProps = 2 > 1 ? 'SUCCESS' : 'DANGER'
 
     return (

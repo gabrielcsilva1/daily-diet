@@ -1,5 +1,4 @@
-import { SectionList, View } from "react-native";
-import { useTheme } from "styled-components/native";
+import { SectionList } from "react-native";
 
 import { Avatar, Container, DietStatus, DietStatusButton, DietStatusVariantsProps, HomeHeader, Label, Logo, Separator, SectionHeaderText } from "./style";
 
@@ -12,10 +11,23 @@ import { ArrowIcon } from "@/components/ArrowIcon";
 
 import logoImg from '@/assets/logo.png';
 import avatarImg from '@/assets/avatar.png';
+import { useNavigation } from "@react-navigation/native";
 
-export default function Home() {
-    const {COLORS} = useTheme()
+export function Home() {
+    const navigation = useNavigation()
     const dietStatus: DietStatusVariantsProps = 3 > 2 ? "SUCCESS" : "DANGER"
+    
+    function handleOpenDietStats(){
+        navigation.navigate('diet-stats')
+    }
+
+    function handleOpenMealInfo(){
+        navigation.navigate('info', {id: '1'})
+    }
+
+    function handleCreateNewMeal(){
+        navigation.navigate('new')
+    }
 
     return (
         <Container>
@@ -29,13 +41,13 @@ export default function Home() {
 
                 <Highlight title="90,86%" label="das refeições dentro da dieta"/>
 
-                <DietStatusButton activeOpacity={0.7}>
+                <DietStatusButton activeOpacity={0.7} onPress={handleOpenDietStats}>
                     <ArrowIcon name="arrow-up-right" $variant={dietStatus}/>
                 </DietStatusButton>
             </DietStatus>
 
             <Label>Refeições</Label>
-            <Button>
+            <Button onPress={handleCreateNewMeal}>
                 <ButtonIcon name="plus"/>
                 <ButtonLabel>Nova refeição</ButtonLabel>
             </Button>
@@ -45,7 +57,7 @@ export default function Home() {
                 keyExtractor={(item) => item.hour}
                 style={{marginTop: 32}}
 
-                renderItem={({item}) => <MealCard hour={item.hour} label={item.meal} $variant={item.style}/>}
+                renderItem={({item}) => <MealCard onPress={() => handleOpenMealInfo()} hour={item.hour} label={item.meal} $variant={item.style}/>}
                 renderSectionHeader={({section}) => <SectionHeaderText>{section.title}</SectionHeaderText>}
                 contentContainerStyle={{gap: 8, paddingBottom:80}}
                 renderSectionFooter={() => <Separator/>}

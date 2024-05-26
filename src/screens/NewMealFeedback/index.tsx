@@ -3,7 +3,7 @@ import inDietImg from '@/assets/inside-diet.png';
 import outDietImg from '@/assets/out-diet.png';
 import { Button, ButtonLabel } from "@/components/Button";
 
-export default function NewMealFeedback(){
+export function NewMealFeedback(){
     const isInDiet = false
 
     return (

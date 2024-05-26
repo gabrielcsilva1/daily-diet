@@ -6,7 +6,7 @@ import  theme  from '@/theme';
 import { Routes } from '@/routes';
 
 import { Loading } from '@/components/Loading';
-import { StatusBar, View } from 'react-native';
+import { StatusBar } from 'react-native';
 
 export default function App() {
   const [fontsLoaded] = useFonts({

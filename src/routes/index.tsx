@@ -1,13 +1,15 @@
-import Home from "@/screens/Home";
-import Stats from "@/screens/Stats";
-import CreateMeal from "@/screens/CreateMeal";
-import NewDietFeedback from "@/screens/NewMealFeedback";
-import { MealInfo } from "@/screens/MealInfo";
+import { View } from 'react-native'
+import { NavigationContainer } from "@react-navigation/native";
+import { AppRoutes } from "./app.routes";
+import { useTheme } from 'styled-components/native';
 
 export function Routes() {
+    const { COLORS } = useTheme()
     return (
-        
-        <MealInfo/>
-        
+        <View style={{flex: 1, backgroundColor: COLORS.GRAY_700}}>   
+            <NavigationContainer>
+                <AppRoutes/>
+            </NavigationContainer>
+        </View>
     )
 }

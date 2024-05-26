@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { ArrowIcon, ArrowIconVariantProps } from '../ArrowIcon';
 import { BackButton, Container, Subtitle } from'./style';
 
@@ -7,9 +8,11 @@ type HeaderComponentProps = {
 }
 
 export function Header({subtitle = '', $variant = 'DEFAULT'}: HeaderComponentProps) {
+    const navigation = useNavigation()
+
     return (
        <Container>
-            <BackButton>
+            <BackButton onPress={() => navigation.goBack()}>
                 <ArrowIcon name="arrow-left" $variant={$variant}/>
             </BackButton>
 
