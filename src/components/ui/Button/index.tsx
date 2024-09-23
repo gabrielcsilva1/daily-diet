@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
 import { TextProps, TouchableOpacityProps } from 'react-native';
-import { Container, Icon, ButtonVariantsProps, Label } from "./style";
+import { Container, ButtonIcon, ButtonVariantsProps, ButtonLabel } from "./style";
 import { createContext, useContext } from 'react';
 
 
@@ -16,7 +16,7 @@ const ButtonContext = createContext({} as {
     $variant: ButtonVariantsProps
 })
 
-export function Button({$variant = "PRIMARY", children, ...rest}: ButtonComponentProps){
+function Root({$variant = "PRIMARY", children, ...rest}: ButtonComponentProps){
     return (
         <Container $variant={$variant} {...rest} activeOpacity={0.7}>
             <ButtonContext.Provider value={{$variant}}>
@@ -26,18 +26,20 @@ export function Button({$variant = "PRIMARY", children, ...rest}: ButtonComponen
     )
 }
 
-export function ButtonIcon({ name }: ButtonIconComponentProps){
+function Icon({ name }: ButtonIconComponentProps){
     const { $variant } = useContext(ButtonContext)
 
     return (
-        <Icon $variant={$variant} name={name}/>
+        <ButtonIcon $variant={$variant} name={name}/>
     )
 }
 
-export function ButtonLabel({...rest}: TextProps){
+function Label({...rest}: TextProps){
     const { $variant } = useContext(ButtonContext)
 
     return (
-        <Label $variant={$variant} {...rest}/>
+        <ButtonLabel $variant={$variant} {...rest}/>
     )
 }
+
+export const Button = {Root, Label, Icon}

@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { Circle, Container, TagTitle, TagVariantsProps } from "./style";
 
 type TagComponentProps = {

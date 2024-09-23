@@ -13,7 +13,7 @@ import {
   SectionHeaderText,
 } from './style'
 
-import { Button, ButtonIcon, ButtonLabel } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button'
 import { MealCard } from '@/components/ui/MealCard'
 import { Highlight } from '@/components/ui/Highlight'
 import { ArrowIcon } from '@/components/ui/ArrowIcon'
@@ -38,11 +38,11 @@ export function Home() {
   }
 
   function handleOpenMealInfo() {
-    navigation.navigate('info', { id: '1' })
+    navigation.navigate('meal-info', { id: '1' })
   }
 
   function handleCreateNewMeal() {
-    navigation.navigate('new')
+    navigation.navigate('create-meal')
   }
 
   async function fetchMealsHistory() {
@@ -81,10 +81,10 @@ export function Home() {
       </DietStatus>
 
       <Label>Refeições</Label>
-      <Button onPress={handleCreateNewMeal}>
-        <ButtonIcon name="plus" />
-        <ButtonLabel>Nova refeição</ButtonLabel>
-      </Button>
+      <Button.Root onPress={handleCreateNewMeal}>
+        <Button.Icon name="plus" />
+        <Button.Label>Nova refeição</Button.Label>
+      </Button.Root>
 
       {isLoading ? (
         <Loading />

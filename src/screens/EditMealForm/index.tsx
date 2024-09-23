@@ -1,16 +1,12 @@
 import { Container, RowContainer } from './style'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import { View } from 'react-native'
-
 import { Header } from '@/components/Header'
 import { FormInput } from '@/components/ui/FormInput'
-import { Label } from '@/components/ui/FormInput/style'
-import { OptionButton } from '@/components/ui/OptionButton'
-import { Button, ButtonLabel } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button'
 import { MealFormSheet } from '@/components/MealFormSheet'
 
-export function EditMeal() {
+export function EditMealForm() {
   return (
     <Container>
       <Header subtitle="Editar refeição" />
@@ -31,16 +27,11 @@ export function EditMeal() {
             <FormInput style={{ flex: 1 }} label="Hora" />
           </RowContainer>
 
-          <View>
-            <Label>Está dentro da dieta?</Label>
-            <RowContainer style={{ gap: 8 }}>
-              <OptionButton title="Sim" variant="PRIMARY" />
-              <OptionButton title="Não" variant="SECONDARY" />
-            </RowContainer>
-          </View>
-          <Button style={{ marginTop: 'auto' }}>
-            <ButtonLabel>Salvar alterações</ButtonLabel>
-          </Button>
+          {/* <OnDietOptionButtons/> */}
+
+          <Button.Root style={{ marginTop: 'auto' }}>
+            <Button.Label>Salvar alterações</Button.Label>
+          </Button.Root>
         </KeyboardAwareScrollView>
       </MealFormSheet>
     </Container>

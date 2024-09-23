@@ -1,10 +1,10 @@
-import { NewMeal } from '@/screens/NewMeal'
+import { CreateMealForm } from '@/screens/CreateMealForm'
 import { Home } from '@/screens/Home'
 import { DietStats } from '@/screens/DietStats'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { NewMealFeedback } from '@/screens/NewMealFeedback'
+import { CreateMealFeedback } from '@/screens/CreateMealFeedback'
 import { MealInfo } from '@/screens/MealInfo'
-import { EditMeal } from '@/screens/EditMeal'
+import { EditMealForm } from '@/screens/EditMealForm'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -15,10 +15,10 @@ export function AppRoutes(){
         }}>
             <Screen name='home' component={Home}/>
             <Screen name='diet-stats' component={DietStats}/>
-            <Screen name='new' component={NewMeal}/>
-            <Screen name='feedback' component={NewMealFeedback}/>
-            <Screen name='info' component={MealInfo}/>
-            <Screen name='edit' component={EditMeal}/>
+            <Screen name='create-meal' component={CreateMealForm}/>
+            <Screen name='feedback' component={CreateMealFeedback}/>
+            <Screen name='meal-info' component={MealInfo}/>
+            <Screen name='edit-meal' component={EditMealForm}/>
         </Navigator>
     )
 }

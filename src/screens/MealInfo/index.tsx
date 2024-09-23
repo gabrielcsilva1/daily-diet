@@ -5,8 +5,8 @@ import { useState } from 'react'
 import { Tag } from '@/components/ui/Tag'
 import { Header } from '@/components/Header'
 import { MealFormSheet } from '@/components/MealFormSheet'
-import { Button, ButtonIcon, ButtonLabel } from '@/components/ui/Button'
-import { DeleteDietModal } from '@/components/DeleteDietModal'
+import { Button } from '@/components/ui/Button'
+import { DeleteMealConfirmModal } from '@/components/DeleteMealConfirmModal'
 import { useNavigation } from '@react-navigation/native'
 
 export function MealInfo() {
@@ -14,7 +14,7 @@ export function MealInfo() {
   const navigation = useNavigation()
 
   function handleEditMeal() {
-    navigation.navigate('edit', { id: '1' })
+    navigation.navigate('edit-meal', { id: '1' })
   }
 
   return (
@@ -33,22 +33,22 @@ export function MealInfo() {
 
         <Tag $variant="SUCCESS" />
 
-        <Button
+        <Button.Root
           style={{ marginTop: 'auto', marginBottom: 8 }}
           onPress={() => handleEditMeal()}
         >
-          <ButtonIcon name="edit" />
-          <ButtonLabel>Editar refeição</ButtonLabel>
-        </Button>
+          <Button.Icon name="edit" />
+          <Button.Label>Editar refeição</Button.Label>
+        </Button.Root>
 
-        <Button
+        <Button.Root
           $variant="SECONDARY"
           onPress={() => setVisibleModal(true)}
           style={{ marginBottom: 40 }}
         >
-          <ButtonIcon name="trash" />
-          <ButtonLabel>Excluir refeição</ButtonLabel>
-        </Button>
+          <Button.Icon name="trash" />
+          <Button.Label>Excluir refeição</Button.Label>
+        </Button.Root>
       </MealFormSheet>
 
       <Modal
@@ -56,9 +56,9 @@ export function MealInfo() {
         transparent
         onRequestClose={() => setVisibleModal(false)}
       >
-        <DeleteDietModal
+        <DeleteMealConfirmModal
           onClose={() => setVisibleModal(false)}
-          onConfirm={() => null}
+          onConfirm={() => null} // TODO: confirm modal
         />
       </Modal>
     </Container>

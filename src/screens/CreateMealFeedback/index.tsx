@@ -1,9 +1,9 @@
 import { Container, ImageFeedback, Strong, Subtitle, Title } from './style'
 import inDietImg from '@/assets/inside-diet.png'
 import outDietImg from '@/assets/out-diet.png'
-import { Button, ButtonLabel } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button'
 
-export function NewMealFeedback() {
+export function CreateMealFeedback() {
   const isInDiet = false
 
   return (
@@ -25,9 +25,9 @@ export function NewMealFeedback() {
 
       <ImageFeedback source={isInDiet ? inDietImg : outDietImg} />
 
-      <Button>
-        <ButtonLabel>Ir para página inicial</ButtonLabel>
-      </Button>
+      <Button.Root>
+        <Button.Label>Ir para página inicial</Button.Label>
+      </Button.Root>
     </Container>
   )
 }

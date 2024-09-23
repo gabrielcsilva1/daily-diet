@@ -1,12 +1,9 @@
-import { Container, HorizontalContainer, Label } from './style'
+import { Container, HorizontalContainer } from './style'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
-import { View } from 'react-native'
 
 import { Header } from '@/components/Header'
 import { FormInput } from '@/components/ui/FormInput'
-import { OptionButton } from '@/components/ui/OptionButton'
-import { Button, ButtonLabel } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button'
 import { MealFormSheet } from '@/components/MealFormSheet'
 
 import { useForm, Controller } from 'react-hook-form'
@@ -26,7 +23,7 @@ const mealFormSchema = z.object({
 
 type MealFormType = z.infer<typeof mealFormSchema>
 
-export function NewMeal() {
+export function CreateMealForm() {
   const { control, handleSubmit, formState: { errors }} = useForm<MealFormType>({
     resolver: zodResolver(mealFormSchema),
     defaultValues: {
@@ -132,9 +129,9 @@ export function NewMeal() {
               )}
             />
 
-          <Button style={{ marginTop: 'auto' }} onPress={handleSubmit(handleCreateMeal)}>
-            <ButtonLabel>Cadastrar refeição</ButtonLabel>
-          </Button>
+          <Button.Root style={{ marginTop: 'auto' }} onPress={handleSubmit(handleCreateMeal)}>
+            <Button.Label>Cadastrar refeição</Button.Label>
+          </Button.Root>
         </KeyboardAwareScrollView>
       </MealFormSheet>
     </Container>
