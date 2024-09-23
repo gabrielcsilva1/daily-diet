@@ -1,14 +1,14 @@
-import { Container, RowContainer } from './style';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Container, RowContainer } from './style'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import { View } from 'react-native';
+import { View } from 'react-native'
 
-import { Header } from '@/components/Header';
-import { FormInput } from '@/components/FormInput';
-import { Label } from '@/components/FormInput/style';
-import { OptionButton } from '@/components/OptionButton';
-import { Button, ButtonLabel } from '@/components/Button';
-import { MealFormSheet } from '@/components/MealFormSheet';
+import { Header } from '@/components/Header'
+import { FormInput } from '@/components/ui/FormInput'
+import { Label } from '@/components/ui/FormInput/style'
+import { OptionButton } from '@/components/ui/OptionButton'
+import { Button, ButtonLabel } from '@/components/ui/Button'
+import { MealFormSheet } from '@/components/MealFormSheet'
 
 export function EditMeal() {
   return (
@@ -44,5 +44,5 @@ export function EditMeal() {
         </KeyboardAwareScrollView>
       </MealFormSheet>
     </Container>
-  );
+  )
 }
