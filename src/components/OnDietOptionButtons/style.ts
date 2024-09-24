@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components/native'
 
 export const HorizontalContainer = styled.View`
   flex-direction: row;
+  gap: 8px;
 `
 
 export const Label = styled.Text`

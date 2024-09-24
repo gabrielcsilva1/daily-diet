@@ -1,4 +1,4 @@
-import { Container, HorizontalContainer } from './style'
+import { Container } from './style'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { Header } from '@/components/Header'
@@ -12,12 +12,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { OnDietOptionButtons } from '@/components/OnDietOptionButtons'
 import { createMeal } from '@/storage/meal/create-meal'
+import { DateTimeInputs } from '@/components/DateTimeInputs'
 
 const mealFormSchema = z.object({
   name: z.string({ message: 'Por favor forneça o nome' }),
   description: z.string({ message: 'Por favor forneça a descrição' }),
-  date: z.string({ message: 'Por favor forneça a data' }),
-  time: z.string({ message: 'Por favor forneça a hora' }),
+  date: z.date({ message: 'Por favor forneça a data' }),
   isOnDiet: z.boolean(),
 })
 
@@ -27,23 +27,19 @@ export function CreateMealForm() {
   const { control, handleSubmit, formState: { errors }} = useForm<MealFormType>({
     resolver: zodResolver(mealFormSchema),
     defaultValues: {
+      date: new Date(),
       isOnDiet: true
     }
   })
 
   async function handleCreateMeal(data: MealFormType) {
-    // TODO: Usar uma biblioteca para data e hora
-    const [day, month, year] = data.date.split('/').map((item) => Number(item))
-    const [hour, minutes] = data.time.split(':').map((item) => Number(item))
-
-    const date = new Date(year, month, day, hour, minutes)
-    
+        
     try {
       await createMeal({
         id: String(new Date().valueOf()),
         name: data.name,
         description: data.description,
-        date: date.toISOString(),
+        date: data.date.toISOString(),
         isOnDiet: data.isOnDiet
       })
     }
@@ -90,33 +86,14 @@ export function CreateMealForm() {
             )}
           />
 
-          <HorizontalContainer style={{ gap: 20 }}>
-            <Controller
-              control={control}
-              name="date"
-              render={({ field: { onChange, value } }) => (
-                <FormInput
-                  label="Data"
-                  value={value}
-                  onChangeText={onChange}
-                  error={errors.date?.message}
-                />
-              )}
-            />
-
-            <Controller
-              control={control}
-              name="time"
-              render={({ field: { onChange, value } }) => (
-                <FormInput
-                  label="Hora"
-                  value={value}
-                  onChangeText={onChange}
-                  error={errors.time?.message}
-                />
-              )}
-            />
-          </HorizontalContainer>
+          <Controller
+            control={control}
+            name='date'
+            render={({field: {value, onChange}}) => (
+              <DateTimeInputs value={value} onChange={onChange}/>
+            )}
+          />
+          
           
           <Controller
               control={control}

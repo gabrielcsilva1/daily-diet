@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { css } from 'styled-components/native'
 
-export const Container = styled.View`
+export const Root = styled.View`
   flex: 1;
   max-height: 70px;
   gap: 4px;
@@ -9,6 +9,7 @@ export const Container = styled.View`
 
 export const HorizontalContainer = styled.View`
   flex-direction: row;
+  align-items: center;
   gap: 8px;
 `
 
@@ -43,5 +44,6 @@ export const Input = styled.TextInput.attrs(({ theme }) => ({
     border: 1px solid ${theme.COLORS.GRAY_500};
     font-family: ${theme.FONT_FAMILY.REGULAR};
     font-size: ${theme.SIZE.MD}px;
+    color: ${theme.COLORS.GRAY_100};
   `}
 `
