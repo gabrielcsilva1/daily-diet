@@ -1,7 +1,7 @@
 import { CardVariantProps, Container, Label, Title } from "./style";
 
 type CardComponentProps = {
-    value: string;
+    value: string | number;
     description: string;
     $variant?: CardVariantProps
 }

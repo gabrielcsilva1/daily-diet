@@ -12,7 +12,6 @@ export function Header({
   $variant = 'DEFAULT',
 }: HeaderComponentProps) {
   const navigation = useNavigation()
-
   return (
     <Container>
       <BackButton onPress={() => navigation.goBack()}>

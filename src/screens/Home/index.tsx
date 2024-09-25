@@ -25,13 +25,15 @@ import { useCallback, useState } from 'react'
 import { MealsHistoryDTO } from '@/dtos/meals-history-DTO'
 import { getMealsHistory } from '@/storage/meal/get-meals-history'
 import { Loading } from '@/components/ui/Loading'
+import { getStatistics } from '@/storage/meal/get-statistics'
 
 export function Home() {
   const [history, setHistory] = useState<MealsHistoryDTO>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [inDietPercentage, setInDietPercentage] = useState(0)
 
   const navigation = useNavigation()
-  const dietStatus: DietStatusVariantsProps = 3 > 2 ? 'SUCCESS' : 'DANGER'
+  const dietStatus: DietStatusVariantsProps = inDietPercentage >= 50 ? 'SUCCESS' : 'DANGER'
 
   function handleOpenDietStats() {
     navigation.navigate('diet-stats')
@@ -46,13 +48,23 @@ export function Home() {
   }
 
   async function fetchMealsHistory() {
+    const historyStorage = await getMealsHistory()
+
+    setHistory(historyStorage)
+  }
+
+  async function fetchStatistics() {
+      const {percentage} = await getStatistics()
+
+      setInDietPercentage(percentage)
+  }
+
+  async function fetchAllData() {
     try {
       setIsLoading(true)
-      const historyStorage = await getMealsHistory()
-
-      setHistory(historyStorage)
+      await Promise.all([fetchMealsHistory(), fetchStatistics()])
     } catch (error) {
-      console.log('Erro ao buscar as refeições') // TODO: add alert
+      console.log('Erro') // TODO: Usar um alert
     } finally {
       setIsLoading(false)
     }
@@ -60,7 +72,7 @@ export function Home() {
 
   useFocusEffect(
     useCallback(() => {
-      fetchMealsHistory()
+      fetchAllData()
     }, [])
   )
 
@@ -73,7 +85,7 @@ export function Home() {
       </HomeHeader>
 
       <DietStatus $variant={dietStatus}>
-        <Highlight title="90,86%" label="das refeições dentro da dieta" />
+        <Highlight title={`${inDietPercentage.toFixed(2)}%`} label="das refeições dentro da dieta" />
 
         <DietStatusButton activeOpacity={0.7} onPress={handleOpenDietStats}>
           <ArrowIcon name="arrow-up-right" $variant={dietStatus} />
@@ -81,7 +93,12 @@ export function Home() {
       </DietStatus>
 
       <Label>Refeições</Label>
-      <Button.Root onPress={handleCreateNewMeal}>
+
+      <Button.Root 
+      onPress={handleCreateNewMeal} 
+      disabled={isLoading}
+      isLoading={isLoading}
+      > 
         <Button.Icon name="plus" />
         <Button.Label>Nova refeição</Button.Label>
       </Button.Root>
@@ -101,6 +118,7 @@ export function Home() {
               $variant={item.isOnDiet ? 'SUCCESS' : 'DANGER'}
             />
           )}
+          stickySectionHeadersEnabled={false}
           renderSectionHeader={({ section }) => (
             <SectionHeaderText>{section.title}</SectionHeaderText>
           )}

@@ -6,7 +6,6 @@ import { getAllMeals } from './get-all-meals'
 export async function createMeal(newMeal: MealDTO) {
   try {
     const meals = await getAllMeals()
-
     const storage = JSON.stringify([...meals, newMeal])
 
     await AsyncStorage.setItem(MEAL_COLLECTION, storage)

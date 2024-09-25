@@ -17,7 +17,7 @@ export async function getMealsHistory() {
     let currentDate = dayjs(meals[0].date).subtract(1, 'year')
 
     meals.forEach((meal) => {
-      const isOnSameDate = currentDate.isSame(meal.date)
+      const isOnSameDate = currentDate.isSame(meal.date, 'day')
 
       if (!isOnSameDate) {
         currentDate = dayjs(meal.date)

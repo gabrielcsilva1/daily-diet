@@ -4,9 +4,8 @@ export declare global {
       home: undefined
       'diet-stats': undefined
       'create-meal': undefined
-      feedback: {
-        id: string
-      }
+      'negative-feedback': undefined
+      'positive-feedback': undefined
       'meal-info': {
         id: string
       }

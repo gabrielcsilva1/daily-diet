@@ -82,5 +82,5 @@ export const SectionHeaderText = styled.Text`
 `
 
 export const Separator = styled.View`
-  height: 24px;
+  height: 14px;
 `

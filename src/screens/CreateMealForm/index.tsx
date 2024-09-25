@@ -13,6 +13,9 @@ import { z } from 'zod'
 import { OnDietOptionButtons } from '@/components/OnDietOptionButtons'
 import { createMeal } from '@/storage/meal/create-meal'
 import { DateTimeInputs } from '@/components/DateTimeInputs'
+import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { Loading } from '@/components/ui/Loading'
 
 const mealFormSchema = z.object({
   name: z.string({ message: 'Por favor forneça o nome' }),
@@ -24,6 +27,8 @@ const mealFormSchema = z.object({
 type MealFormType = z.infer<typeof mealFormSchema>
 
 export function CreateMealForm() {
+  const [isLoading, setIsLoading] = useState(false)
+  const navigation = useNavigation()
   const { control, handleSubmit, formState: { errors }} = useForm<MealFormType>({
     resolver: zodResolver(mealFormSchema),
     defaultValues: {
@@ -33,8 +38,10 @@ export function CreateMealForm() {
   })
 
   async function handleCreateMeal(data: MealFormType) {
-        
+
     try {
+      setIsLoading(true)
+      
       await createMeal({
         id: String(new Date().valueOf()),
         name: data.name,
@@ -42,8 +49,16 @@ export function CreateMealForm() {
         date: data.date.toISOString(),
         isOnDiet: data.isOnDiet
       })
+
+      if (data.isOnDiet) {
+        navigation.navigate('positive-feedback')
+      }
+      else {
+        navigation.navigate('negative-feedback')
+      }
     }
     catch (error) {
+      setIsLoading(false)
       console.log(error) // TODO: Usar o alert
     }
   }
@@ -106,8 +121,13 @@ export function CreateMealForm() {
               )}
             />
 
-          <Button.Root style={{ marginTop: 'auto' }} onPress={handleSubmit(handleCreateMeal)}>
-            <Button.Label>Cadastrar refeição</Button.Label>
+          <Button.Root 
+          style={{ marginTop: 'auto' }} 
+          onPress={handleSubmit(handleCreateMeal)} 
+          isLoading={isLoading}
+          > 
+             <Button.Label>Cadastrar refeição</Button.Label>
+            
           </Button.Root>
         </KeyboardAwareScrollView>
       </MealFormSheet>
