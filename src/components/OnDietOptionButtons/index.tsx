@@ -3,11 +3,11 @@ import { OptionButton } from '../ui/OptionButton'
 import { View } from 'react-native'
 
 type OnDietOptionButtons = {
-  value: boolean
-  onChange: (value: boolean) => void
+  value?: boolean
+  onChange?: (value: boolean) => void
 }
 
-export function OnDietOptionButtons({ value, onChange }: OnDietOptionButtons) {
+export function OnDietOptionButtons({ value = true, onChange = () => {} }: OnDietOptionButtons) {
   return (
     <View>
       <Label>Está dentro da dieta?</Label>

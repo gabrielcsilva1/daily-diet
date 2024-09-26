@@ -10,11 +10,19 @@ export const InfoContainer = styled.View`
   margin-bottom: 24px;
 `
 
-export const Title = styled.Text`
+export const NameTitle = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
     font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.SIZE.LG}px;
+    font-size: 20px;
+  `}
+`
+
+export const DateTitle = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_100};
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    font-size: ${theme.SIZE.XS}px;
   `}
 `
 

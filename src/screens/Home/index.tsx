@@ -26,6 +26,7 @@ import { MealsHistoryDTO } from '@/dtos/meals-history-DTO'
 import { getMealsHistory } from '@/storage/meal/get-meals-history'
 import { Loading } from '@/components/ui/Loading'
 import { getStatistics } from '@/storage/meal/get-statistics'
+import { showAlert } from '@/utils/show-alert'
 
 export function Home() {
   const [history, setHistory] = useState<MealsHistoryDTO>([])
@@ -39,8 +40,8 @@ export function Home() {
     navigation.navigate('diet-stats')
   }
 
-  function handleOpenMealInfo() {
-    navigation.navigate('meal-info', { id: '1' })
+  function handleOpenMealInfo(id: string) {
+    navigation.navigate('meal-info', { id })
   }
 
   function handleCreateNewMeal() {
@@ -64,7 +65,7 @@ export function Home() {
       setIsLoading(true)
       await Promise.all([fetchMealsHistory(), fetchStatistics()])
     } catch (error) {
-      console.log('Erro') // TODO: Usar um alert
+      showAlert({title: 'Ocorreu um erro!', message: 'Error ao encontrar as refeições'})
     } finally {
       setIsLoading(false)
     }
@@ -112,7 +113,7 @@ export function Home() {
           style={{ marginTop: 32 }}
           renderItem={({ item }) => (
             <MealCard
-              onPress={() => handleOpenMealInfo()}
+              onPress={() => handleOpenMealInfo(item.id)}
               time={item.time}
               label={item.name}
               $variant={item.isOnDiet ? 'SUCCESS' : 'DANGER'}

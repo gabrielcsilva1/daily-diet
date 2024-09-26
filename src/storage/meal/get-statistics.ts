@@ -15,6 +15,10 @@ export async function getStatistics() {
       totalAmount: 0,
     }
 
+    if (meals.length === 0) {
+      return statistics
+    }
+
     let currentSequence = 0
 
     meals.forEach((meal) => {

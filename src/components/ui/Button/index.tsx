@@ -3,6 +3,7 @@ import { TextProps, TouchableOpacityProps } from 'react-native';
 import { Container, ButtonIcon, ButtonVariantsProps, ButtonLabel } from "./style";
 import { createContext, useContext } from 'react';
 import { Loading } from '../Loading';
+import { useTheme } from 'styled-components/native';
 
 
 type ButtonComponentProps = TouchableOpacityProps & {
@@ -19,6 +20,7 @@ const ButtonContext = createContext({} as {
 })
 
 function Root({$variant = "PRIMARY", children, isLoading, ...rest}: ButtonComponentProps){
+    const {COLORS} = useTheme()
     return (
         <Container 
         $variant={$variant} 
@@ -28,7 +30,11 @@ function Root({$variant = "PRIMARY", children, isLoading, ...rest}: ButtonCompon
         disabled={isLoading || rest.disabled}
         >
             <ButtonContext.Provider value={{$variant}}>
-                {isLoading ? <Loading/> : children}
+                {
+                isLoading ? 
+                <Loading color={$variant === 'PRIMARY' ?  COLORS.WHITE : COLORS.GRAY_200}/> : 
+                children
+                }
             </ButtonContext.Provider>
         </Container>
     )

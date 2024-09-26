@@ -15,7 +15,7 @@ import { createMeal } from '@/storage/meal/create-meal'
 import { DateTimeInputs } from '@/components/DateTimeInputs'
 import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Loading } from '@/components/ui/Loading'
+import { showAlert } from '@/utils/show-alert'
 
 const mealFormSchema = z.object({
   name: z.string({ message: 'Por favor forneça o nome' }),
@@ -59,7 +59,7 @@ export function CreateMealForm() {
     }
     catch (error) {
       setIsLoading(false)
-      console.log(error) // TODO: Usar o alert
+      showAlert({title: 'Ocorreu um erro!', message: 'Error ao cadastrar o refeição'})
     }
   }
   
