@@ -1,6 +1,9 @@
 # Daily Diet
 ![GitHub repo size](https://img.shields.io/github/repo-size/gabrielcsilva1/daily-diet)
-![GitHub last commit](https://img.shields.io/github/last-comimt/gabrielcsilva1/daily-diet)
+![GitHub last commit](https://img.shields.io/github/last-commit/gabrielcsilva1/daily-diet)
+
+![Capa do Projeto](./.github/screenshots/cover.jpg)
+
 
 ## Descrição
 Um app mobile de cadastro e gerenciamento de refeições com as seguintes funcionalidades:
